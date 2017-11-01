@@ -5,14 +5,14 @@ import MessageList from './MessageList.jsx';
 import Nav from './Nav.jsx';
 
 import data from '../data.json';
-// var json = require('../data.json');
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = data;
-
+    this.socket;
+ 
     this.onMessages = this.onMessages.bind(this);
   }
 
@@ -38,6 +38,9 @@ class App extends Component {
       // Calling setState will trigger a call to render() in App and all child components.
       this.setState({ messages: messages })
     }, 3000);
+
+    this.socket = new WebSocket('ws://localhost:3001');
+    console.log("Connected to server");
   }
 
   render() {
