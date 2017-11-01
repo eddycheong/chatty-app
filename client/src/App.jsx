@@ -9,7 +9,7 @@ class App extends Component {
     super();
 
     this.state = {
-      currentUser: {name: 'Bob'},
+      currentUser: { name: 'Bob' },
       messages: []
     };
 
@@ -26,14 +26,15 @@ class App extends Component {
 
     this.socket.send(JSON.stringify(message));
 
-    // const messages = this.state.messages.concat({
-    //   username: username,
-    //   content: message
-    // });
+    this.socket.onmessage = (event) => {
+      const messages = this.state.messages.concat(
+        JSON.parse(event.data)
+      );
 
-    // this.setState({
-    //   messages: messages
-    // });
+      this.setState({
+        messages: messages
+      });
+    }
   }
 
   componentDidMount() {
