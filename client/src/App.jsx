@@ -12,19 +12,26 @@ class App extends Component {
 
     this.state = data;
     this.socket;
- 
+
     this.onMessages = this.onMessages.bind(this);
   }
 
-  onMessages(username, message) {
-    const messages = this.state.messages.concat({
+  onMessages(username, content) {
+    const message = {
       username: username,
-      content: message
-    });
+      content: content
+    };
 
-    this.setState({
-      messages: messages
-    });
+    this.socket.send(JSON.stringify(message));
+
+    // const messages = this.state.messages.concat({
+    //   username: username,
+    //   content: message
+    // });
+
+    // this.setState({
+    //   messages: messages
+    // });
   }
 
   componentDidMount() {
