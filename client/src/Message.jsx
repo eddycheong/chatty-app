@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Message extends Component {
+class UserMessage extends Component {
   render() {
     const { username, content } = this.props;
 
@@ -12,4 +12,17 @@ class Message extends Component {
     );
   }
 }
-export default Message;
+
+class SystemMessage extends Component {
+  render() {
+    const { content } = this.props;
+
+    return (
+      <div className="message system">
+        {content}
+      </div>
+    );
+  }
+}
+
+export { UserMessage, SystemMessage };

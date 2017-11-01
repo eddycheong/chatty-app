@@ -3,6 +3,7 @@
 const express = require('express');
 const uuid = require('uuid/v1');
 const ws = require('ws');
+const messageLib = require('../lib/messageLib')
 
 const SocketServer = ws.Server;
 
@@ -37,10 +38,7 @@ wss.on('connection', (ws) => {
 
         const message = JSON.parse(data);
         message['type'] = message['type'].replace(/post/, 'incoming');
-
-        if(/message\b/i.test(message.type)) {
-            message['id'] = uuid();
-        }   
+        message['id'] = uuid(); 
 
         wss.broadcast(JSON.stringify(message));
     });
