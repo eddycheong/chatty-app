@@ -36,7 +36,11 @@ wss.on('connection', (ws) => {
     ws.on('message', data => {
 
         const message = JSON.parse(data);
-        message['id'] = uuid();
+        message['type'] = message['type'].replace(/post/, 'incoming');
+
+        if(/message\b/i.test(message.type)) {
+            message['id'] = uuid();
+        }   
 
         wss.broadcast(JSON.stringify(message));
     });
