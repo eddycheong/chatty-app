@@ -19,18 +19,15 @@ class App extends Component {
     this.onMessages = this.onMessages.bind(this);
   }
 
-  onMessages(event) {
-    if(event.key === 'Enter') {
-      const message = {
-        username: this.state.currentUser.name,
-        content: event.target.value
-      };
-      const messages = this.state.messages.concat(message);
+  onMessages(message) {
+    const messages = this.state.messages.concat({
+      username: this.state.currentUser.name,
+      content: message
+    });
 
-      this.setState({
-        messages: messages
-      });
-    }
+    this.setState({
+      messages: messages
+    });
   }
 
   componentDidMount() {
