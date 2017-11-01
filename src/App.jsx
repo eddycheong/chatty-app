@@ -11,17 +11,14 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {
-      currentUser: data.currentUser,
-      messages: data.messages
-    };
+    this.state = data;
 
     this.onMessages = this.onMessages.bind(this);
   }
 
-  onMessages(message) {
+  onMessages(username, message) {
     const messages = this.state.messages.concat({
-      username: this.state.currentUser.name,
+      username: username,
       content: message
     });
 

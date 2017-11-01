@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 
 class ChatBar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
+      username: this.props.currentUser.name,
       content: ''
     };
 
     this.onContent = this.onContent.bind(this);
+    this.onUsername = this.onUsername.bind(this);
+  }
+
+  onUsername(event) {
+    this.setState({
+      username: (event.target.value.length > 0 ? event.target.value : 'Anonymous')
+    });
   }
 
   onContent(event) {
@@ -22,21 +30,22 @@ class ChatBar extends Component {
       <footer className="chatbar">
         <input
           className="chatbar-username"
-          defaultValue={this.props.currentUser.name}
+          defaultValue={this.state.username}
           placeholder="Your Name (Optional)"
+          onChange={this.onUsername}
         />
         <input
           className="chatbar-message"
           placeholder="Type a message and hit ENTER"
           onKeyPress={event => {
             if (event.key === 'Enter') {
-              this.props.onMessages(event.target.value)
+              this.props.onMessages(this.state.username, event.target.value)
               this.setState({ content: '' })
             }
           }}
           onChange={this.onContent}
           value={this.state.content}
-        
+
         />
       </footer>
     );
