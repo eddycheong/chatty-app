@@ -4,13 +4,15 @@ import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import Nav from './Nav.jsx';
 
-import data from '../data.json';
-
 class App extends Component {
   constructor() {
     super();
 
-    this.state = data;
+    this.state = {
+      currentUser: {name: 'Bob'},
+      messages: []
+    };
+
     this.socket;
 
     this.onMessages = this.onMessages.bind(this);
