@@ -1,30 +1,20 @@
 import React, { Component } from 'react';
 
-function image(link) {
-  return (
-    <img src={link} />
-  );
-}
-
 class UserMessage extends Component {
   render() {
     const { username, usercolor, content } = this.props.message;
 
-    // console.log(/\.jpg|\.png|\.gif/.test(content))
     const imageLink = /\b(https?:\/\/.*?\.(?:jpe?g|png|gif))\b/;
-    const messageContent = content.split(imageLink).map(x => {
-      if(imageLink.test(x)) {
-        return image(x);
+    const messageContent = content.split(imageLink).map(partialContent => {
+      if(imageLink.test(partialContent)) {
+        return (<img className="image-content" src={partialContent} />)
       }
 
       return (
-        <div>{x}</div>
+        <div>{partialContent}</div>
       );
     });
 
-    console.log(messageContent);
-
-    // if(/https?:\/\/.*(\.jpe?g|\.png|\.gif)/.test(content)) {
     return (
       <div className="message">
         <span className="message-username" style={{ color: usercolor }}>{username}</span>
@@ -33,18 +23,6 @@ class UserMessage extends Component {
         </span>
       </div>
     );
-    // }
-    // else {
-    //   return (
-    //     <div className="message">
-    //       <span className="message-username" style={{color: usercolor}}>{username}</span>
-    //       <span className="message-content">
-    //         {content}
-    //       </span>
-    //     </div>
-    //   );
-    // }
-
   }
 }
 
