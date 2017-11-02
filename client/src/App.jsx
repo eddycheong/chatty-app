@@ -55,7 +55,6 @@ class App extends Component {
     this.socket.onmessage = (event) => {
 
       const data = JSON.parse(event.data)
-      console.log(data);
       switch (data.type) {
         case "incomingMessage":
           // handle incoming message
@@ -70,7 +69,6 @@ class App extends Component {
           });
           break;
         case "incomingServerState":
-          console.log(data);
           this.setState({
             activeUsers: data.activeUsers
           });
