@@ -3,6 +3,7 @@
 const express = require('express');
 const uuid = require('uuid/v1');
 const ws = require('ws');
+const randomColor = require('randomcolor');
 
 const SocketServer = ws.Server;
 
@@ -36,6 +37,7 @@ wss.on('connection', (ws) => {
         type: 'incomingServerState',
         activeUsers: wss.clients.size
     }
+    const color = randomColor();
 
     wss.broadcast(JSON.stringify(serverState));
 
@@ -44,6 +46,7 @@ wss.on('connection', (ws) => {
         const message = JSON.parse(data);
         message['type'] = message['type'].replace(/post/, 'incoming');
         message['id'] = uuid(); 
+        message['usercolor'] = color;
 
         wss.broadcast(JSON.stringify(message));
     });
