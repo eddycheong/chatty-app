@@ -52,15 +52,11 @@ class App extends Component {
       switch (data.type) {
         case "incomingMessage":
           // handle incoming message
-          this.setState({
-            messages: this.state.messages.concat(data)
-          });
+          this.setState({ messages: [...this.state.messages, data] });
           break;
         case "incomingNotification":
           // handle incoming notification
-          this.setState({
-            messages: this.state.messages.concat(data)
-          });
+          this.setState({ messages: [...this.state.messages, data] });
           break;
         case "incomingServerState":
           this.setState({
@@ -69,7 +65,7 @@ class App extends Component {
           break;
         default:
           // show an error in the console if the message type is unknown
-          throw new Error("Unknown event type " + data.type);
+          throw new Error(`Unknown event type ${data.type}`);
       }
     }
   }
@@ -81,9 +77,7 @@ class App extends Component {
     return (
       <div>
         <Nav activeUsers={activeUsers} />
-        <MessageList
-          messages={messages}
-        />
+        <MessageList messages={messages} />
         <ChatBar
           currentUser={currentUser}
           postMessage={postMessage}
