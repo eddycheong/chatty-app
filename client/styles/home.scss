@@ -66,6 +66,9 @@ h1 {
 }
 
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: tomato;
   border-bottom: 1px solid black;
   height: 60px;
@@ -86,4 +89,8 @@ h1 {
   line-height: 60px;
   padding: 0 10px;
   text-decoration: none;
+}
+
+.navbar p {
+  font-size: 28px;
 }

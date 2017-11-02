@@ -9,6 +9,7 @@ class App extends Component {
     super();
 
     this.state = {
+      activeUsers: 0,
       currentUser: { name: 'Bob' },
       messages: []
     };
@@ -46,28 +47,47 @@ class App extends Component {
     }
 
     this.socket.onmessage = (event) => {
-      const messages = this.state.messages.concat(
-        JSON.parse(event.data)
-      );
 
-      this.setState({
-        messages: messages
-      });
+      const data = JSON.parse(event.data)
+      console.log(data);
+      switch (data.type) {
+        case "incomingMessage":
+          // handle incoming message
+          this.setState({
+            messages: this.state.messages.concat(data)
+          });
+          break;
+        case "incomingNotification":
+          // handle incoming notification
+          this.setState({
+            messages: this.state.messages.concat(data)
+          });
+          break;
+        case "incomingServerState":
+          console.log(data);
+          this.setState({
+            activeUsers: data.activeUsers
+          });
+          break;
+        default:
+          // show an error in the console if the message type is unknown
+          throw new Error("Unknown event type " + data.type);
+      }
     }
   }
 
   render() {
-    const {messages, currentUser } = this.state, 
-          {postMessage, postNotification} = this;
+    const { messages, currentUser, activeUsers } = this.state,
+      { postMessage, postNotification } = this;
 
     return (
       <div>
-        <Nav />
-        <MessageList 
-          messages={messages} 
+        <Nav activeUsers={activeUsers} />
+        <MessageList
+          messages={messages}
         />
-        <ChatBar 
-          currentUser={currentUser} 
+        <ChatBar
+          currentUser={currentUser}
           postMessage={postMessage}
           postNotification={postNotification}
         />
