@@ -25,7 +25,7 @@ class App extends Component {
     this.postNotification = this.postNotification.bind(this);
   }
 
-  postMessage(username, usercolor, content) {
+  postMessage(username, content) {
     const message = {
       type: "postMessage",
       username: username,
