@@ -2,32 +2,17 @@ import React, { Component } from 'react';
 
 import { UserMessage, SystemMessage } from './Message.jsx';
 
-const messageLib = require('../../lib/messageLib');
-
-const userMessage = (message) => (
-  <UserMessage
-    key={message.id}
-    username={message.username}
-    content={message.content}
-  />
-);
-
-const systemMessage = (message) => (
-  <SystemMessage
-    key={message.id}
-    content={message.content}
-  />
-);
+const messageType = require('../../lib/messageType');
 
 class MessageList extends Component {
 
   render() {
     const messages = this.props.messages.map(message => {
-      if (messageLib.isNotification(message)) {
-        return systemMessage(message);
+      if (messageType.isNotification(message)) {
+        return <SystemMessage key={message.id} message={message} />
       }
 
-      return userMessage(message);
+      return <UserMessage key={message.id} message={message} />
     });
 
     return (

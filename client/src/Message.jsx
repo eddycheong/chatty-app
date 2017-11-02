@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class UserMessage extends Component {
   render() {
-    const { username, content } = this.props;
+    const { username, content } = this.props.message;
 
     return (
       <div className="message">
@@ -15,7 +15,7 @@ class UserMessage extends Component {
 
 class SystemMessage extends Component {
   render() {
-    const { content } = this.props;
+    const { content } = this.props.message;
 
     return (
       <div className="message system">

@@ -3,7 +3,6 @@
 const express = require('express');
 const uuid = require('uuid/v1');
 const ws = require('ws');
-const messageLib = require('../lib/messageLib')
 
 const SocketServer = ws.Server;
 
