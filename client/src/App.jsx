@@ -4,13 +4,18 @@ import ChatBar from './ChatBar.jsx';
 import MessageList from './MessageList.jsx';
 import Nav from './Nav.jsx';
 
+const colors = ['#EF6F6C', '#465775', '#56E39F', '#3454D1'];
+
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
       activeUsers: 0,
-      currentUser: { name: 'Bob' },
+      currentUser: { 
+        name: 'Bob', 
+        color: colors[Math.floor(Math.random()*colors.length)],
+      },
       messages: []
     };
 
@@ -20,10 +25,11 @@ class App extends Component {
     this.postNotification = this.postNotification.bind(this);
   }
 
-  postMessage(username, content) {
+  postMessage(username, usercolor, content) {
     const message = {
       type: "postMessage",
       username: username,
+      usercolor: this.state.currentUser.color,
       content: content
     };
 

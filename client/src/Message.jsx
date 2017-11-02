@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 class UserMessage extends Component {
   render() {
-    const { username, content } = this.props.message;
+    const { username, usercolor, content } = this.props.message;
 
     return (
       <div className="message">
-        <span className="message-username">{username}</span>
+        <span className="message-username" style={{color: usercolor}}>{username}</span>
         <span className="message-content">{content}</span>
       </div>
     );
