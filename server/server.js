@@ -39,7 +39,7 @@ wss.on('connection', (ws) => {
         activeUsers: wss.clients.size
     }
 
-    wss.broadcast(JSON.stringify(serverState);
+    wss.broadcast(JSON.stringify(serverState));
 
     ws.on('message', data => {
 
@@ -56,6 +56,6 @@ wss.on('connection', (ws) => {
         console.log('Client disconnected')
         serverState.activeUsers = wss.clients.size
 
-        wss.broadcast(JSON.stringify(serverState);
+        wss.broadcast(JSON.stringify(serverState));
     });
 });
