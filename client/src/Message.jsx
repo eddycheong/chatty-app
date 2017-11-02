@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class UserMessage extends Component {
+class Message extends Component {
   render() {
     const { username, usercolor, content } = this.props.message;
 
@@ -26,7 +26,7 @@ class UserMessage extends Component {
   }
 }
 
-class SystemMessage extends Component {
+class Notification extends Component {
   render() {
     const { content } = this.props.message;
 
@@ -38,4 +38,4 @@ class SystemMessage extends Component {
   }
 }
 
-export { UserMessage, SystemMessage };
+export { Message, Notification };

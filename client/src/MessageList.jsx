@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { UserMessage, SystemMessage } from './Message.jsx';
+import { Message, Notification } from './Message.jsx';
 
 const messageType = require('../../lib/messageType');
 
@@ -9,10 +9,10 @@ class MessageList extends Component {
   render() {
     const messages = this.props.messages.map(message => {
       if (messageType.isNotification(message)) {
-        return <SystemMessage key={message.id} message={message} />
+        return <Notification key={message.id} message={message} />
       }
 
-      return <UserMessage key={message.id} message={message} />
+      return <Message key={message.id} message={message} />
     });
 
     return (
