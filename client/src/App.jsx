@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       activeUsers: 0,
       currentUser: { 
-        name: 'Bob', 
+        name: 'Anonymous', 
         color: colors[Math.floor(Math.random()*colors.length)],
       },
       messages: []

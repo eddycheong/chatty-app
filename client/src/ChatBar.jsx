@@ -23,7 +23,6 @@ class ChatBar extends Component {
       <footer className="chatbar">
         <input
           className="chatbar-username"
-          defaultValue={this.state.username}
           placeholder="Your Name (Optional)"
           onKeyPress={event => {
             if (event.key === 'Enter') {
