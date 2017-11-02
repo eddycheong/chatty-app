@@ -22,7 +22,7 @@ class App extends Component {
 
   postMessage(username, content) {
     const message = {
-      type: "postMessage",
+      type: 'postMessage',
       username: username,
       content: content
     };
@@ -32,7 +32,7 @@ class App extends Component {
 
   postNotification(content) {
     const message = {
-      type: "postNotification",
+      type: 'postNotification',
       content: content
     };
 
@@ -43,22 +43,22 @@ class App extends Component {
     this.socket = new WebSocket('ws://localhost:3001');
 
     this.socket.onopen = () => {
-      console.log("Connected to server");
+      console.log('Connected to server');
     }
 
     this.socket.onmessage = (event) => {
 
       const data = JSON.parse(event.data)
       switch (data.type) {
-        case "incomingMessage":
+        case 'incomingMessage':
           // handle incoming message
           this.setState({ messages: [...this.state.messages, data] });
           break;
-        case "incomingNotification":
+        case 'incomingNotification':
           // handle incoming notification
           this.setState({ messages: [...this.state.messages, data] });
           break;
-        case "incomingServerState":
+        case 'incomingServerState':
           this.setState({
             activeUsers: data.activeUsers
           });

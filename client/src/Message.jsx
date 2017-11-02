@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 function Message(props) {
   const { username, usercolor, content } = props.message;
