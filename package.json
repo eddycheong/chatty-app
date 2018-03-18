@@ -1,0 +1,24 @@
+{
+  "name": "chatty-app",
+  "version": "1.0.0",
+  "description": "Chatty App",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "install": "npm install --prefix server && npm install --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eddycheong/chatty-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eddycheong/chatty-app/issues"
+  },
+  "homepage": "https://github.com/eddycheong/chatty-app#readme"
+}
